@@ -1,6 +1,7 @@
 package hibernate.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.metamodel.Type;
@@ -38,5 +39,23 @@ public class EmbeddableTypeTest
         Type<Address> type2 = Person_.address.getType();
 
         assertEquals(type1, type2);
+    }
+
+    @Test
+    public void test2()
+    {
+        Type<Address> type = Company_.address.getType();
+        boolean contains = emf.getMetamodel().getEmbeddables().contains(type);
+
+        assertTrue(contains);
+    }
+
+    @Test
+    public void test3()
+    {
+        Type<Address> type = Person_.address.getType();
+        boolean contains = emf.getMetamodel().getEmbeddables().contains(type);
+
+        assertTrue(contains);
     }
 }
